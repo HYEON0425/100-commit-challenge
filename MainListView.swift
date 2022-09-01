@@ -12,14 +12,7 @@ struct MainListView: View {
     
     var body: some View {
         List(store.list) { memo in
-            VStack(alignment: .leading) {
-                Text(memo.content)
-                    .font(.body)
-                    .lineLimit(1)
-                Text(memo.insertDate, style: .date)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
+            ExtractedView()
         }
         .listStyle(.plain)
         .navigationTitle("내 메모")
@@ -31,6 +24,19 @@ struct MainListView_Previews: PreviewProvider {
         NavigationView {
             MainListView()
                 .environmentObject(MemoStore())
+        }
+    }
+}
+
+struct ExtractedView: View {
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(memo.content)
+                .font(.body)
+                .lineLimit(1)
+            Text(memo.insertDate, style: .date)
+                .font(.caption)
+                .foregroundColor(.secondary)
         }
     }
 }
